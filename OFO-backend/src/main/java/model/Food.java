@@ -24,7 +24,8 @@ public class Food {
     private String description;
     private Long price;
 
-    private Category foodCategory;
+    @ManyToOne
+    private Category category;
 
     @Column(length = 1000)
     @ElementCollection

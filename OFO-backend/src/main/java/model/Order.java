@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table
+@Table(name = "orders")
 public class Order {
 
     @Id
@@ -37,7 +37,7 @@ public class Order {
     @ManyToOne
     private Address deliveryAddress;
 
-    @ManyToOne
+    @OneToMany
     private List<OrderItem> items;
 
     private int totalItem;
