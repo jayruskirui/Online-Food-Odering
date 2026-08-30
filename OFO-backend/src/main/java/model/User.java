@@ -1,4 +1,4 @@
-package model;
+package com.project2.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -7,6 +7,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import model.Address;
+import model.Order;
+import model.USER_ROLE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +30,7 @@ public class User {
 
     private String password;
 
-    private USER_ROLE role;
+    private USER_ROLE role=USER_ROLE.ROLE_CUSTOMER;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
