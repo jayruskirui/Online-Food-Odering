@@ -1,4 +1,4 @@
-package com.project2.model;
+package model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -7,9 +7,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import model.Address;
-import model.Order;
-import model.USER_ROLE;
 
 import java.util.ArrayList;
 import java.util.List;

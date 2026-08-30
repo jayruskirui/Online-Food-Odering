@@ -6,7 +6,7 @@ import org.springframework.boot.persistence.autoconfigure.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
-@EntityScan("com.project2.model")
+@EntityScan("model")
 @EnableJpaRepositories("com.project2.repository")
 @SpringBootApplication
 
