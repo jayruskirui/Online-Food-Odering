@@ -116,10 +116,20 @@ public class RestaurantServiceImpl implements RestaurantService{
         dto.setTitle(restaurant.getName());
         dto.setId(restaurantId);
 
-        if(user.getFavourites().contains(dto)){
-            user.getFavourites().remove(dto);
+        boolean isFavourited = false;
+        List<RestaurantDto> favourites = user.getFavourites();
+        for (RestaurantDto favourite : favourites){
+            if(favourite.getId().equals(restaurantId)){
+                isFavourited = true;
+                break;
+            }
         }
-        else user.getFavourites().add(dto);
+
+        if (isFavourited){
+            favourites.removeIf(favourite -> favourite.getId().equals(restaurantId));
+        }else {
+            favourites.add(dto);
+        }
 
         userRepository.save(user);
         return dto;
@@ -133,5 +143,10 @@ public class RestaurantServiceImpl implements RestaurantService{
         restaurant.setOpen(!restaurant.isOpen());
 
         return restaurantRepository.save(restaurant);
+    }
+
+    @Override
+    public Restaurant getRestaurantByUserId(Long id) {
+        return restaurantRepository.findByOwnerId(id);
     }
 }
