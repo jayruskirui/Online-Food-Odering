@@ -116,19 +116,21 @@ public class CartServiceImp implements CartService{
     }
 
     @Override
-    public Cart findCartByUserId(String jwt) throws Exception {
+    public Cart findCartByUserId(Long userId) throws Exception {
+//        User user = userService.findUserByJwtToken(jwt);
 
-        User user = userService.findUserByJwtToken(jwt);
+        Cart cart = cartRepository.findByCustomerId(userId);
+        cart.setTotal(calculateCartTotals(cart));
 
-        return cartRepository.findByCustomerId(user.getId());
+        return cart;
     }
 
     @Override
-    public Cart ClearCart(String jwt) throws Exception {
+    public Cart ClearCart(Long userId) throws Exception {
 
-        User user = userService.findUserByJwtToken(jwt);
+//        User user = userService.findUserByJwtToken(jwt);
 
-        Cart cart = findCartByUserId(jwt);
+        Cart cart = findCartByUserId(userId);
         cart.getItem().clear();
 
         return cartRepository.save(cart);
