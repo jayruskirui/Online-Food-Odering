@@ -15,7 +15,7 @@ const MultiItemCarousel = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 5,
-    slidesToScroll: 3,
+    slidesToScroll: 1,
     arrows: false,
     autoplay: true,
     autoplaySpeed: 2000,
@@ -24,10 +24,10 @@ const MultiItemCarousel = () => {
   };
 
   return (
-    <div>
+    <div className = 'multi-carousel'>
         <Slider {...settings}>
           {topMeals.map((item) => (
-            <CarouselItem key={item.title} image={item.image} title={item.title}/>
+            <CarouselItem image={item.image} title={item.title}/>
             ))}
         </Slider>
     </div>
