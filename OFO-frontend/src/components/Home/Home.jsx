@@ -1,4 +1,5 @@
 import React from 'react'
+import MultiItemCarousel from './MultiItemCarousel'
 
 const Home = () => {
   return (
@@ -16,10 +17,13 @@ const Home = () => {
             <div className = 'cover absolute top-0 left-0 right-0'>
 
             </div>
-                
+
             <div className = 'fadeout'>
 
             </div>
+        </section>
+        <section>
+            <MultiItemCarousel />
         </section>
     </div>
   )
