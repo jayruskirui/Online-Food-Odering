@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* IE and older Edge */
+body {
+  -ms-overflow-style: none;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -16,7 +31,7 @@ code {
 
 
 .banner {
-  background-image: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');
+  background-image: url('https://glovo.dhmedia.io/image/stores-glovo/stores/c8e40086b124796d2b345fe1a8203587caa30745a0a7ce26bace91c4721c2ffc?t=W3siYXV0byI6eyJxIjoibG93In19LHsicmVzaXplIjp7Im1vZGUiOiJmaXQiLCJ3aWR0aCI6MTI4MCwiaGVpZ2h0IjoxMjB9fV0%3D');
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
@@ -27,7 +42,7 @@ code {
   width: 100%;
   height: 90vh;
   background-color: black;
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 .fadeout {
