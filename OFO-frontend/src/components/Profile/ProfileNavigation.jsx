@@ -14,8 +14,8 @@ import { useNavigate } from 'react-router-dom';
 
 const menu = [
     {title:"Orders", icon:<ShoppingBagIcon/>},
-    {title:"Favorite", icon:<FavoriteIcon/>},
-    {title:"Home", icon:<HomeIcon/>},
+    {title:"Favorites", icon:<FavoriteIcon/>},
+    {title:"Address", icon:<HomeIcon/>},
     {title:"Payment", icon:<AccountBalanceWalletIcon/>},
     {title:"Notifications", icon:<NotificationsIcon/>},
     {title:"Events", icon:<EventAvailableIcon/>},
