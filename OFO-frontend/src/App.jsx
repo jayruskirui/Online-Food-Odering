@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar"
 import CssBaseline from "@mui/material/CssBaseline"
 import Home from "./components/Home/Home"
 import RestaurantDetails from "./components/Restaurant/RestaurantDetails"
+import Cart from "./components/Cart/Cart"
 
 
 
@@ -14,7 +15,8 @@ function App() {
       <CssBaseline />
       <Navbar />
       {/* <Home /> */}
-      <RestaurantDetails />
+      {/* <RestaurantDetails /> */}
+      <Cart/>
     </ThemeProvider>
   )
 }
