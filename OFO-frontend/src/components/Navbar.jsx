@@ -24,7 +24,7 @@ const Navbar = () => {
           </div>
 
           <div className =''>
-            <Avatar sx = {{bgcolor: "white", color: "pink.A400"}}>O</Avatar>
+            <Avatar sx = {{bgcolor: "white", color: "pink.A400"}}>C</Avatar>
           </div>
 
           <div className= ''>
