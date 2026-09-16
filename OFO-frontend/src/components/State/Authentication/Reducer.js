@@ -1,4 +1,4 @@
-import { ADD_TO_FAVORITE_FAILURE, ADD_TO_FAVORITE_REQUEST, ADD_TO_FAVORITE_SUCCESS, GET_USER_FAILURE, GET_USER_REQUEST, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "./ActionType";
+import { ADD_TO_FAVORITE_FAILURE, ADD_TO_FAVORITE_REQUEST, ADD_TO_FAVORITE_SUCCESS, GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "./ActionType";
 
 const initialState={
 
@@ -22,6 +22,9 @@ export const authReducer = (state = initialState, action) => {
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
             return {...state,isLoading:false,jwt:action.payload,success:"Resgister Success"};
+        
+        case GET_USER_SUCCESS:
+            return {...state,isLoading:false,user:action.payload};
         
         case ADD_TO_FAVORITE_SUCCESS:
             return {...state,
