@@ -7,12 +7,12 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 import { useSelector } from 'react-redux';
-import { store } from './State/store';
 
 
 const Navbar = () => {
   const {auth} = useSelector(store => store)
   const navigate = useNavigate()
+  const userInitial = auth.user?.fullName?.trim()?.[0]?.toUpperCase()
 
   return (
     <div className = 'px-5 sticky top-0 z-50 py-[.8rem] bg-[#e91e63] lg:px-20 flex justify-between'>
@@ -31,7 +31,7 @@ const Navbar = () => {
           </div>
 
           <div className =''>
-            {auth.user ? <Avatar sx = {{bgcolor: "white", color: "pink.A400"}}>{auth.user?.fullName[0].toUpperCase()}</Avatar> : 
+            {userInitial ? <Avatar sx = {{bgcolor: "white", color: "pink.A400"}}>{userInitial}</Avatar> : 
             <IconButton onClick={()=>navigate("/account/login")}>
               <PersonIcon />
             </IconButton>}
