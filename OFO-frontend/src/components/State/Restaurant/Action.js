@@ -1,5 +1,3 @@
-
-
 import { api } from "../../../config/api";
 import {
   CREATE_CATEGORY_FAILURE,
