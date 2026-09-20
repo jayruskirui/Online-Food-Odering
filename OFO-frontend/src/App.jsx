@@ -15,12 +15,12 @@ import { getUser } from "./components/State/Authentication/Action"
 
 function App() {
   const dispatch = useDispatch();
-  const jwt = localStorage.getItem("jwt");
   const { auth } = useSelector((store)=>store)
 
   useEffect(()=>{
-    dispatch(getUser(auth.jwt || jwt));
-  }, [auth.jwt]);
+    const jwt = auth.jwt || localStorage.getItem("jwt");
+    if (jwt) dispatch(getUser(jwt));
+  }, [auth.jwt, dispatch]);
 
   return (
     <ThemeProvider theme={darkTheme}>

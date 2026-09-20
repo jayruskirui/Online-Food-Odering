@@ -10,7 +10,7 @@ export const registerUser=(reqData)=>async(dispatch)=>{
     try {
         const {data} = await axios.post(`${API_URL}/auth/signup`, reqData.userData)
         if(data.jwt)localStorage.setItem("jwt",data.jwt);
-        if(data.role==="ROLE_RESTAURANT_OWNER"){
+        if(data.role==="ROLE_RESTAURANT_OWNER" || data.role==="ROLE_ADMIN"){
             reqData.navigate("/admin/restaurant")
         }
         else{
@@ -31,10 +31,10 @@ export const loginUser=(reqData)=>async(dispatch)=>{
     dispatch({type:LOGIN_REQUEST})
 
     try {
-        const {data} = await axios.post(`${API_URL}/auth/signin`, reqData.userData)
+        const {data} = await api.post("/auth/signin", reqData.userData)
         if(data.jwt)localStorage.setItem("jwt",data.jwt);
         if(data.role==="ROLE_RESTAURANT_OWNER"){
-            reqData.navigate("/admin/restaurant")
+            reqData.navigate("/")
         }
         else{
             reqData.navigate("/")

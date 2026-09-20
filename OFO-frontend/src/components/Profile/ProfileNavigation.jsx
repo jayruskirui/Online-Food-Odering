@@ -10,6 +10,8 @@ import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../State/Authentication/Action';
 
 
 const menu = [
@@ -25,9 +27,16 @@ const menu = [
 const ProfileNavigation = ({open, handleClose}) => {
     const isLargeScreen = useMediaQuery("(min-width:900px)");
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const handleNavigate = (item) => {
-        navigate(`/my-profile/${item.title.toLowerCase()}`)
         if (!isLargeScreen) handleClose();
+        if(item.title === "LogOut"){
+            dispatch(logout())
+            navigate("/")
+        }else
+        navigate(`/my-profile/${item.title.toLowerCase()}`)
+        
     }
 
   return (
