@@ -8,7 +8,8 @@ import menuItemReducer from "./Menu/Reducer";
 const rooteReducer=combineReducers({
     auth: authReducer,
     restaurant: restaurantReducer,
-    menu: menuItemReducer
+    menu: menuItemReducer,
+    cart: re
 })
 
 export const store = legacy_createStore(rooteReducer, applyMiddleware(thunk));
