@@ -1,5 +1,5 @@
-import { LOGOUT } from "../../Authentication/ActionType";
-import * as actionTypes from "./ActionTypes";
+import { LOGOUT } from "../Authentication/ActionType";
+import * as actionTypes from "./ActionType";
 
 const initialState = {
   cart: null,
