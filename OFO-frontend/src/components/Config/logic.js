@@ -1,8 +1,8 @@
 
 
 export const isPresentInFavorites = (favorites,restaurant) => {
-    for(let item of favorites){
-        if(restaurant.id === item.id){
+    for(let item of Array.isArray(favorites) ? favorites : []){
+        if(restaurant?.id === item.id){
             return true
         }
     }

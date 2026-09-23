@@ -1,18 +1,14 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { Divider, FormControl, FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material';
 import MenuCard from './MenuCard';
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigate, useParams } from "react-router-dom"
+import { getRestaurantById, getRestaurantsCategory } from '../State/Restaurant/Action'
 
 
-const categories = [
-    'Burgers',
-    'Pizza',
-    'Sushi',
-    'Salads',
-    'Desserts',
-    'Drinks'
-];
+
 
 const foodTypes = [
     { label: 'All', value: 'all' },
@@ -25,11 +21,25 @@ const menu = [1,1,1,1,1]
 
 const RestaurantDetails = () => {
 
+    const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const jwt = localStorage.getItem("jwt")
+    const {auth,restaurant} = useSelector(store => store)
+
+    const {id, city} = useParams()
+
     const [foodType, setFoodType] = useState('all');
 
     const handleFilter = (e) => {
         console.log(e.target.value, e.target.name)
     }
+
+    console.log("restaurant", restaurant)
+
+    useEffect(()=>{
+        dispatch(getRestaurantById({jwt, restaurantId:id}))
+        dispatch(getRestaurantsCategory({jwt, restaurantId:id}))
+    },[])
 
   return (
     <div className='px-5 lg:px-20'>
@@ -40,7 +50,7 @@ const RestaurantDetails = () => {
           {/* Top image - full width */}
           <img
             className='w-full h-[30vh] md:h-[40vh] object-cover rounded-lg'
-            src='https://images.unsplash.com/photo-1581349485608-9469926a8e5e?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+            src={restaurant.restaurant?.images[0]}
             alt=''
           />
 
@@ -48,22 +58,22 @@ const RestaurantDetails = () => {
           <div className='flex gap-2'>
             <img
               className='w-full md:w-1/2 h-[30vh] md:h-[40vh] object-cover rounded-lg'
-              src='https://images.unsplash.com/photo-1613946069412-38f7f1ff0b65?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+              src={restaurant.restaurant?.images[1]}
               alt=''
             />
             <img
               className='w-full md:w-1/2 h-[30vh] md:h-[40vh] object-cover rounded-lg'
-              src='https://plus.unsplash.com/premium_photo-1679434184720-f729541052eb?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+              src={restaurant.restaurant?.images[2]}
               alt=''
             />
           </div>
         </div>
 
         <div className = 'pt-3 pb-5'>
-            <h1 className = 'text-4xl font-semibold'>Kenya Fast Food</h1>
+            <h1 className = 'text-4xl font-semibold'>{restaurant.restaurant?.name}</h1>
 
             <p className = 'text-gray-500 mt-1'>
-              Experience the taste of Kenya with our delicious fast food options.
+              {restaurant.restaurant?.description}
             </p>
 
             <div className = 'space-y-3 mt-3'>
@@ -113,12 +123,12 @@ const RestaurantDetails = () => {
 
                 <FormControl className='py-10 space-y-5' component={"fieldset"}>
                         <RadioGroup onChange={handleFilter} name="foodType" value={foodType}>
-                            {categories.map((item) => (
+                            {restaurant.categories.map((item) => (
                                 <FormControlLabel
                                     key={item}
                                     value={item}
                                     control={<Radio />}
-                                    label={item}
+                                    label={item.name}
                                 />
                             ))}
                         </RadioGroup>
