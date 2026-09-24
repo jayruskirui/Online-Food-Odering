@@ -1,4 +1,4 @@
-import { api } from "../../../config/api";
+import { api } from "../../Config/api";
 import {
   CREATE_MENU_ITEM_FAILURE,
   CREATE_MENU_ITEM_REQUEST,
@@ -54,6 +54,7 @@ export const getMenuItemsByRestaurantId = (reqData) => {
     console.log("menu item by restaurants ", data);
     dispatch({type:GET_MENU_ITEMS_BY_RESTAURANT_ID_SUCCESS,payload:data});
     } catch (error) {
+    console.log("error ", error);
     dispatch({type:GET_MENU_ITEMS_BY_RESTAURANT_ID_FAILURE,payload:error});
     }
   };
