@@ -3,6 +3,7 @@ import MultiItemCarousel from './MultiItemCarousel'
 import RestaurantCard from '../Restaurant/RestaurantCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllRestaurantsAction } from '../State/Restaurant/Action'
+import { findCart } from '../State/Cart/Action'
 
 
 const Restaurant = [1,1,1,1]
@@ -17,6 +18,7 @@ const Home = () => {
 
     useEffect(()=>{
         dispatch(getAllRestaurantsAction(jwt))
+        
     },[])
 
 

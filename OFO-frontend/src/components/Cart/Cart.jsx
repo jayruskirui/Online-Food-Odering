@@ -6,6 +6,7 @@ import { Box, Button, Card, Grid, Modal, TextField } from '@mui/material'
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import * as Yup from 'yup'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
+import { useSelector } from 'react-redux'
 
 export const style = {
   position: 'absolute',
@@ -35,12 +36,13 @@ const validationSchema = Yup.object().shape({
 
 const items = [1, 1, 1];
 
-const Cart = () => {
+const Cart = ({item}) => {
     const [open, setOpen] = useState(false);
 
     const createOrderUsingSelectedAddress = () => {};
     const handleOpenAddressModal = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const {cart} = useSelector(store => store)
 
     const handleSubmit = (values) => {
         console.log(values);
@@ -53,7 +55,7 @@ const Cart = () => {
             <main className='lg:flex justify-between'>
 
                 <section className='lg:w-[30%] space-y-6 lg:min-h-screen pt-10'>
-                    {items.map((item, index) => (<CartItem key={index} />))}
+                    {(cart.cartItems ?? []).map((item) => (<CartItem key={item.id} item={item} />))}
 
                     <Divider />
 
@@ -130,19 +132,19 @@ const Cart = () => {
                             <Form>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
-                                        <Field
-                                            as={TextField}
-                                            name="streetAddress"
-                                            label="Street Address"
-                                            fullWidth
-                                            variant="outlined"
-                                            error={touched.streetAddress && Boolean(errors.streetAddress)}
-                                            helperText={
-                                                <ErrorMessage name="streetAddress">
-                                                    {(msg) => <span className='text-red-600'>{msg}</span>}
-                                                </ErrorMessage>
-                                            }
-                                        />
+                                            <Field
+                                                as={TextField}
+                                                name="streetAddress"
+                                                label="Street Address"
+                                                fullWidth
+                                                variant="outlined"
+                                                error={touched.streetAddress && Boolean(errors.streetAddress)}
+                                                helperText={
+                                                    <ErrorMessage name="streetAddress">
+                                                        {(msg) => <span className='text-red-600'>{msg}</span>}
+                                                    </ErrorMessage>
+                                                }
+                                            />
                                     </Grid>
 
                                     <Grid item xs={12}>

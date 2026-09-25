@@ -1,15 +1,35 @@
-import { api } from "../../../config/api";
+import { api } from "../../Config/api";
+import { 
+  ADD_ITEM_TO_CART_REQUEST, 
+  ADD_ITEM_TO_CART_SUCCESS, 
+  ADD_ITEM_TO_CART_FAILURE,
+  CLEARE_CART_FAILURE,
+  CLEARE_CART_REQUEST,
+  CLEARE_CART_SUCCESS,
+  FIND_CART_FAILURE,
+  FIND_CART_REQUEST,
+  FIND_CART_SUCCESS,
+  GET_ALL_CART_ITEMS_REQUEST,
+  GET_ALL_CART_ITEMS_SUCCESS,
+  REMOVE_CARTITEM_FAILURE,
+  REMOVE_CARTITEM_REQUEST,
+  REMOVE_CARTITEM_SUCCESS,
+  UPDATE_CARTITEM_FAILURE,
+  UPDATE_CARTITEM_REQUEST,
+  UPDATE_CARTITEM_SUCCESS
+} from './ActionType';
 
 
 export const findCart = (token) => {
   return async (dispatch) => {
     dispatch({type:FIND_CART_REQUEST});
     try {
-      const response = await api.get(`/api/cart/`,{
+      const response = await api.get(`/api/cart`,{
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log("my cart", response.data)
       dispatch({type:FIND_CART_SUCCESS,payload:response.data});
     } catch (error) {
       dispatch({type:FIND_CART_FAILURE,payload:error});
