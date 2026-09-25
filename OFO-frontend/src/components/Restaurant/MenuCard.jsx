@@ -5,6 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Button, Checkbox, FormControlLabel, FormGroup } from '@mui/material';
+import { categorizeIngredients } from '../util/categorizeIngredients';
 
 
 
@@ -53,12 +54,12 @@ const MenuCard = ({ item }) => {
             <div className = 'lg:flex items-center justify-between'>
                 <div className = 'lg:flex items-center lg:gap-5'>
                     <img className = 'w-[7rem] h-[7rem] rounded-lg object-cover'
-                    src = 'https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60' 
+                    src = {item.images[0]} 
                     alt = '' />
                     <div className='space-y-1 lg:space-y-5 lg:max-w-2xl'>
-                        <p className='font-semibold text-xl'>Burger</p>
-                        <p>Ksh 499</p>
-                        <p className='text-gray-400'>Delicious burger in town</p>
+                        <p className='font-semibold text-xl'>{item.name}</p>
+                        <p>Ksh {item.price}</p>
+                        <p className='text-gray-400'>{item.description}</p>
                     </div>
                 </div>
             </div>
@@ -67,12 +68,13 @@ const MenuCard = ({ item }) => {
         <AccordionDetails>
           <form>
             <div className='flex gap-5 flex-wrap'>
-                {demo.map((item) => (
+                {Object.keys(categorizeIngredients(item.ingredients)).map((category) => (
                     <div>
-                        <p>{item.category}</p>
+                    <p>{category}</p>
                         <FormGroup>
-                            {item.ingredients.map((item)=>(
-                                <FormControlLabel control={<Checkbox onChange={()=>handleCheckBoxChange(item)}/>} label={item}/>
+                            {categorizeIngredients(item.ingredients)[category].map((item)=>(
+                                <FormControlLabel key={item.name}
+                                control={<Checkbox onChange={()=>handleCheckBoxChange(item)}/>} label={item.name}/>
                             ))}
                         </FormGroup>
                     </div>

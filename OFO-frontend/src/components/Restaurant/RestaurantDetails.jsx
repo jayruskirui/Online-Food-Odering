@@ -26,7 +26,7 @@ const RestaurantDetails = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
     const jwt = localStorage.getItem("jwt")
-    const {auth,restaurant} = useSelector(store => store)
+    const {auth,restaurant, menu} = useSelector(store => store)
 
     const {id, city} = useParams()
 
@@ -142,7 +142,7 @@ const RestaurantDetails = () => {
         </div>
 
         <div className = 'space-y-5 lg:w-[80%] lg:pl-10'>
-            {menu.map((item) => (<MenuCard key={item} item={item} />))}
+            {menu.menuItems.map((item) => (<MenuCard item={item} />))}
         </div>
       </section>
     </div>
