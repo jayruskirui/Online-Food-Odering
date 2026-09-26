@@ -102,7 +102,7 @@ const RestaurantDetails = () => {
 
                 <p className = 'text-gray-500 flex items-center gap-3'>
                     <CalendarTodayIcon />
-                    <span>Mon 14th Sep (Today)</span>
+                    <span>Mon 15th Sep (Today)</span>
                 </p>
             </div>
         </div>
