@@ -115,7 +115,7 @@ const RestaurantDetails = () => {
             <div className = 'box space-y-5 lg:sticky top-28'>
                 <div>
                     <Typography variant = 'h5' sx = {{paddingBottom: '1rem'}}>
-                        Food Type
+                        Food Type.
                     </Typography>
 
                 <FormControl className='py-10 space-y-5' component={"fieldset"}>
@@ -136,7 +136,7 @@ const RestaurantDetails = () => {
 
                 <div>
                     <Typography variant = 'h5' sx = {{paddingBottom: '1rem'}}>
-                        Food Categories
+                        Food Categories.
                     </Typography>
 
                 <FormControl className='py-10 space-y-5' component={"fieldset"}>
