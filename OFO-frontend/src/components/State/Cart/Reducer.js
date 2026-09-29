@@ -8,6 +8,20 @@ const initialState = {
   error: null,
 };
 
+const updateCartItems = (state, cartItems) => {
+  const total = cartItems.reduce(
+    (sum, item) => sum + Number(item.totalPrice ?? 0),
+    0
+  );
+
+  return {
+    ...state,
+    cart: state.cart ? { ...state.cart, item: cartItems, total } : state.cart,
+    cartItems,
+    loading: false,
+  };
+};
+
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FIND_CART_REQUEST:
@@ -28,27 +42,28 @@ const cartReducer = (state = initialState, action) => {
         cartItems: action.payload.item ?? [],
       };
     case actionTypes.ADD_ITEM_TO_CART_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        cartItems: [action.payload, ...state.cartItems],
-      };
+      return updateCartItems(
+        state,
+        state.cartItems.some((item) => item.id === action.payload.id)
+          ? state.cartItems.map((item) =>
+              item.id === action.payload.id ? action.payload : item
+            )
+          : [action.payload, ...state.cartItems]
+      );
     case actionTypes.UPDATE_CARTITEM_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        cartItems: state.cartItems.map((item) =>
+      return updateCartItems(
+        state,
+        state.cartItems.map((item) =>
           item.id === action.payload.id ? action.payload : item
-        ),
-      };
+        )
+      );
     case actionTypes.REMOVE_CARTITEM_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        cartItems: state.cartItems.filter((item) =>
+      return updateCartItems(
+        state,
+        state.cartItems.filter((item) =>
           item.id !== action.payload
-        ),
-      };
+        )
+      );
     case actionTypes.FIND_CART_FAILURE:
     case actionTypes.UPDATE_CARTITEM_FAILURE:
     case actionTypes.REMOVE_CARTITEM_FAILURE:
